@@ -1,15 +1,29 @@
-/// exportamos nuestro modelo
+    /// exportamos nuestro modelo
 const Mascotas = require('../models/Mascotas');
 
+
 // Funcion para buscar mascotas que esten en la base de datos
-exports.buscarMascotas = async(req,res) => {
+exports.MostraMascotas = async(req,res) => {
     try{
-        const mascotas = await Mascotas.find();
-        res.json(mascotas)
+        let mascotas = await Mascotas.find();
+        res.json({"mascotas":mascotas});
 
     } catch (error){
         console.log(error)
-        res.status(500).send('Hubo un error al buscar clientes');
+        res.status(500).send('Hubo un error al encontrar mascotas');
+    }
+}
+
+//Funcion para buscar mascotas que esten en la base de datos
+
+exports.buscarMascotas = async(req,res) => {
+    try{
+        const mascotas = await Mascotas.find();
+       res.json({mascotas})
+
+    } catch (error){
+        console.log(error)
+        res.status(500).send('Hubo un error al buscar mascotas');
     }
 }
 
@@ -31,7 +45,7 @@ exports.buscarMascota = async (req, res) => {
 }
 
 
-/// funcion agregar clientes
+/// funcion agregar mascota
 exports.agregarMascotas = async (req, res) => {
 
     try {
@@ -83,3 +97,5 @@ exports.eliminarMascotas = async (req, res) => {
         res.status(500).send('hubo un error al elimina un cliente en la BD');
     }
 }
+
+
